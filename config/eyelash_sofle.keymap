@@ -90,11 +90,11 @@
 
         layer_2 {
             bindings = <
-&kp CAPS &trans &trans &trans    &trans    &trans       &mmv MOVE_UP    &kp F7       &kp F8 &kp F9 &kp F10 &kp F11   &kp F12
-&trans   &trans &trans &trans    &trans    &kp LS(N8)   &mmv MOVE_DOWN  &kp LS(N9)   &trans &trans &trans  &kp EQUAL &kp RBKT
-&trans   &trans &trans &trans    &trans    &kp RA(LBKT) &mmv MOVE_LEFT  &kp RA(RBKT) &trans &trans &trans  &trans    &kp BSLH
-&kp NUBS &trans &trans &kp LC(C) &kp LC(V) &kp RA(APOS) &mmv MOVE_RIGHT &kp RA(BSLH) &trans &trans &trans  &trans    &trans
-&trans   &trans &trans &trans    &mo 4     &sl 3        &kp ENTER       &trans       &trans &trans &trans  &trans
+&kp CAPS   &trans &trans &trans    &trans    &trans       &mmv MOVE_UP    &kp F7       &kp F8 &kp F9 &kp F10 &kp F11   &kp F12
+&trans     &trans &trans &trans    &trans    &kp LS(N8)   &mmv MOVE_DOWN  &kp LS(N9)   &trans &trans &trans  &kp EQUAL &kp RBKT
+&trans     &trans &trans &trans    &trans    &kp RA(LBKT) &mmv MOVE_LEFT  &kp RA(RBKT) &trans &trans &trans  &trans    &kp BSLH
+&kp NUBS   &trans &trans &kp LC(C) &kp LC(V) &kp RA(APOS) &mmv MOVE_RIGHT &kp RA(BSLH) &trans &trans &trans  &trans    &trans
+&kp C_MUTE &trans &trans &trans    &mo 4     &sl 3        &kp ENTER       &trans       &trans &trans &trans  &trans
             >;
 
             display-name = "LAYER2";
