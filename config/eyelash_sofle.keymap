@@ -106,11 +106,11 @@
 
         layer_1 {
             bindings = <
-&kp F1    &kp F2    &kp F3    &kp F4    &kp F5        &kp F6       &mmv MOVE_UP    &kp F7        &kp F8        &kp F9     &kp F10   &kp EQUAL        &kp DEL
-&kp GRAVE &kp GRAVE &mkp LCLK &mkp MCLK &mkp RCLK     &kp LS(N8)   &mmv MOVE_DOWN  &kp PG_UP     &kp HOME      &kp UP     &kp END   &kp MINUS        &kp RBKT
-&trans    &kp TILDE &trans    &trans    &trans        &kp RA(LBKT) &mmv MOVE_LEFT  &kp PG_DN     &kp LEFT      &kp DOWN   &kp RIGHT &kp LEFT_BRACKET &kp BSLH
-&trans    &trans    &trans    &trans    &kp RA(NUBS)  &kp RA(APOS) &mmv MOVE_RIGHT &kp RA(EQUAL) &kp LA(LG(X)) &kp INSERT &kp F11   &kp F12          &trans
-&trans    &trans    &trans    &trans    &kp LA(LG(C)) &trans       &mkp LCLK       &trans        &trans        &trans     &trans    &kp LG(LS(DEL))
+&kp F1    &kp F2    &kp F3    &kp F4    &kp F5        &kp F6       &mmv MOVE_UP    &kp F7        &kp F8        &kp F9        &kp F10   &kp EQUAL        &kp DEL
+&kp GRAVE &kp GRAVE &mkp LCLK &mkp MCLK &mkp RCLK     &kp LS(N8)   &mmv MOVE_DOWN  &kp PG_UP     &kp HOME      &kp UP        &kp END   &kp MINUS        &kp RBKT
+&trans    &kp TILDE &trans    &trans    &trans        &kp RA(LBKT) &mmv MOVE_LEFT  &kp PG_DN     &kp LEFT      &kp DOWN      &kp RIGHT &kp LEFT_BRACKET &kp BSLH
+&trans    &trans    &trans    &trans    &kp RA(NUBS)  &kp RA(APOS) &mmv MOVE_RIGHT &kp RA(EQUAL) &kp LA(LG(X)) &kp LA(LG(C)) &kp F11   &kp F12          &trans
+&trans    &trans    &trans    &trans    &kp LA(LG(C)) &trans       &mkp LCLK       &trans        &trans        &trans        &trans    &kp LG(LS(DEL))
             >;
 
             display-name = "LAYER1";
