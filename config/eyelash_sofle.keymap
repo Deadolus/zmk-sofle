@@ -47,6 +47,15 @@
             bindings = <&kp N1>, <&tog 1>;
             mods = <(MOD_LGUI|MOD_RGUI)>;
         };
+        /* Hold-tap behavior for repeating backspace */
+        ht_bspc: hold_tap_backspace {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <0>;
+            quick-tap-ms = <0>;
+            bindings = <&kp>, <&kp>;
+        };
     };
     /* Combo to toggle layer 1 from layer 0 */
     combos {
@@ -57,13 +66,13 @@
             layers = <0>;
             bindings = <&tog 1>;
         };
-        Combo to send backspace from space5 key
+        //Combo to send backspace from space5 key
         backspace5 {
             timeout-ms = <200>;
             key-positions = <56 5>;
             layers = <0>;
-            //slow-release;
-            bindings = <&kp BACKSPACE>;
+            require-prior-idle-ms = <50>;
+            bindings = <&ht_bspc BACKSPACE BACKSPACE>;
         };
     };
 
