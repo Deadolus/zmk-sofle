@@ -133,7 +133,7 @@ ZMK_HOLD_TAP(hmr,
 &mt LSHFT NUBS &hml LGUI Z &hml LALT X  &hml LSHFT C &hml LCTRL V      &kp B  &kp RIGHT_ARROW &kp N  &hmr LCTRL M &hmr RSHFT COMMA &hmr LALT DOT &hmr LGUI FSLH &kp RIGHT_SHIFT
 &kp C_PP       &kp LCTRL   &kp LEFT_ALT &kp LEFT_GUI &space_ht 5 SPACE &mo 1  &mkp LCLK       &mo 2  &kp SPACE    &kp ENTER        &kp RALT      &kp DELETE     
             >;
-            display-name = "LAYER0";
+            display-name = "Home";
             sensor-bindings = <&scroll_encoder>;
         };
 
@@ -165,7 +165,7 @@ ZMK_HOLD_TAP(hmr,
 
         layer_3 {
             bindings = <
-&bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4    &trans          &out OUT_USB &trans &trans &trans &trans     &trans &trans
+&bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4    &trans          &out OUT_USB &trans &trans &trans &trans     &trans &to 6
 &bt BT_CLR      &bt BT_CLR_ALL  &trans          &trans          &trans          &trans          &out OUT_BLE &trans &trans &trans &trans     &trans &trans
 &trans          &rgb_ug RGB_ON  &rgb_ug RGB_SPI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_EFF &trans       &trans &trans &trans &trans     &trans &trans
 &bootloader     &rgb_ug RGB_OFF &rgb_ug RGB_SPD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_EFR &trans       &trans &trans &trans &trans     &trans &bootloader
@@ -198,5 +198,16 @@ ZMK_HOLD_TAP(hmr,
             display-name = "SPACE_MOD";
             sensor-bindings = <&scroll_encoder>;
         };
+    };
+    layer_game {
+	    bindings = <
+		    &kp N1       &kp N2    &kp N3       &kp N4               &kp N5    &kp N6          &kp UP_ARROW    &kp N7 &kp N8    &kp N9    &kp N0   &kp MINUS  &kp BACKSPACE
+		    &kp TAB      &kp Q     &kp W        &kp E                &kp R     &kp T           &kp DOWN_ARROW  &kp Y  &kp U     &kp I     &kp O    &kp P      &kp LBKT
+		    &kp ESC      &kp A     &kp S        &kp D                &kp F     &kp G           &kp LEFT_ARROW  &kp H  &kp J     &kp K     &kp L    &kp SEMI   &kp APOS
+		    &kp LSHFT    &kp Z     &kp X        &kp C                &kp V     &kp B           &kp RIGHT_ARROW &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH   &kp RIGHT_SHIFT
+		    &kp C_PP     &kp LCTRL &kp LEFT_ALT &kp LEFT_GUI         &kp SPACE &mo 1           &mkp LCLK       &mo 2  &kp SPACE &kp ENTER &kp RALT &kp DELETE
+	    >;
+	    display-name = "Game";
+	    sensor-bindings = <&scroll_encoder>;
     };
 };
