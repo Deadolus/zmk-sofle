@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - "config/**"
-      - "boards/arm/eyelash_sofle/**"
       - .github/workflows/draw.yml
       - keymap_drawer.config.yaml
 
@@ -14,7 +13,6 @@ jobs:
     permissions:
       contents: write
     with:
-      keymap_patterns: "boards/arm/eyelash_sofle/eyelash_sofle.keymap"
       commit_message: "[Draw] ${{ github.event.head_commit.message }}"
       destination: "commit"
       fail_on_error: ${{ fromJSON(true) }}
