@@ -9,12 +9,82 @@ on:
 
 jobs:
   draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    with:
-      keymap_patterns: 'config/eyelash_sofle_drawer.keymap'
-      json_path: 'keymap-drawer/layouts'
-      commit_message: "[Draw] ${{ github.event.head_commit.message }}"
-      destination: "commit"
-      fail_on_error: ${{ fromJSON(true) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      
+      - name: Process keymap for keymap-drawer
+        run: |
+          # Extract just the keymap section, wrapping in a minimal device tree
+          # This strips out problematic includes and custom behavior definitions
+          cat > /tmp/process_keymap.sh << 'SCRIPT'
+          #!/bin/bash
+          input_file="$1"
+          output_file="$2"
+          
+          # Start with minimal includes
+          cat > "$output_file" << 'EOF'
+          #include <behaviors.dtsi>
+          #include <dt-bindings/zmk/keys.h>
+          #include <dt-bindings/zmk/bt.h>
+          #include <dt-bindings/zmk/outputs.h>
+          #include <dt-bindings/zmk/ext_power.h>
+          #include <dt-bindings/zmk/pointing.h>
+          #include <dt-bindings/zmk/rgb.h>
+          
+          / {
+          EOF
+          
+          # Extract keymap node and all layers
+          awk '
+            /keymap \{/,/^    \};$/ {
+              # Skip includes and defines before keymap
+              if (/^#include|^#define|^&[a-z_]*|^    keymap|^    \};$/) {
+                if (/^    keymap/) print "    " $0
+                else if (/^    \};$/) print "    " $0
+              } else if (NF > 0 && !/^\/\*|^\*|^$/) {
+                print "    " $0
+              }
+            }
+          ' "$input_file" >> "$output_file"
+          
+          # Close the device tree
+          echo "};" >> "$output_file"
+          SCRIPT
+          
+          chmod +x /tmp/process_keymap.sh
+          /tmp/process_keymap.sh config/eyelash_sofle.keymap /tmp/eyelash_sofle.keymap
+          
+          # Verify keymap node exists
+          if grep -q 'compatible = "zmk,keymap"' /tmp/eyelash_sofle.keymap; then
+            echo "✓ Keymap node found in processed file"
+            cp /tmp/eyelash_sofle.keymap config/eyelash_sofle_drawer.keymap
+          else
+            echo "✗ Failed to extract keymap node"
+            cat /tmp/eyelash_sofle.keymap
+            exit 1
+          fi
+      
+      - name: Commit processed keymap if changed
+        run: |
+          if git diff --quiet config/eyelash_sofle_drawer.keymap; then
+            echo "No changes to processed keymap"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add config/eyelash_sofle_drawer.keymap
+            git commit -m "chore: regenerate keymap for keymap-drawer" --no-verify || true
+            git push || true
+          fi
+      
+      - name: Draw keymaps
+        uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+        with:
+          keymap_patterns: 'config/eyelash_sofle_drawer.keymap'
+          json_path: 'keymap-drawer/layouts'
+          commit_message: "[Draw] ${{ github.event.head_commit.message }}"
+          destination: "commit"
+          fail_on_error: ${{ fromJSON(true) }}
