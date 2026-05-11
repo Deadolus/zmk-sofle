@@ -112,6 +112,8 @@ draw_config:
 parse_config:
   mark_alternate_layer_activators: true
   sticky_label: $$mdi:gesture-tap-hold$$
+  zmk_additional_includes:
+    - modules/zmk-helpers/include
   trans_legend:
     tap: $$mdi:transfer$$
     type: trans
